@@ -2,14 +2,16 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 const int PROCCESS = 5;	// # of processes
 const int RESOURCES = 3; // # of resources
 
 void input(int data[]) {
-	std::ifstream in;
+	ifstream in;
 	in.open("input.txt");
 	if (!in) { 	// error opening file
-		std::cerr << "Error opening input file.\n";
+		cerr << "Error opening input file.\n";
 		exit(2);
 	}
 	
@@ -67,33 +69,33 @@ int main() {
 					}
 				}
 						
-				if (unsafe == false) {	// if no unsafe state has been found yet:
-					safe[index++] = j;	// safe order[index] = current process
+				if (unsafe == false) {	// if theres been no unsafe state found
+					safe[index++] = j;	// safe [index] = current process
 					for (int l = 0; l < RESOURCES; ++l)
-						avail[l] += alloc[j][l];	// add resource to list of available resources
+						avail[l] += alloc[j][l];	// add to list of available
 					finished[j] = 1;	// process # is finished
 				}
 			}	
 		}
 	}
-	found = true;
+	unsafe = true;
 	
 	for (int i = 0; i < PROCCESS; ++i) {
 		if (finished[i] == 0) {	// if not finished
 			unsafe = false;	// in deadlock so its unsafe
-			std::cout << "The system is not in a safe state.\n";
+			cout << "The system is not in a safe state.\n";
 			exit(1);
 			break;
 		}
 	}	
 	
 	if (unsafe == true) {
-		std::cout << "The system is in a safe state. The proper sequence is: ";
+		cout << "The system is in a safe state. The proper sequence is: ";
 		for (int i = 0; i < PROCCESS; ++i) {
-			std::cout << "P";
-			std::cout << safe[i] << " ";
+			cout << "P";
+			cout << safe[i] << " ";
 		}
-		std::cout << "\n";
+		cout << "\n";
 	}
 	
 	return 0;
