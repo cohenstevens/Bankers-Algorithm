@@ -5,7 +5,7 @@
 - GCC Compiler
 
 ## Usage & Installation
-It can be compiled using a couple commands:
+It can be compiled using just two commands:
   - g++ main.cpp -o main
   - ./main
 
