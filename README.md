@@ -6,7 +6,7 @@
 
 ## Usage & Installation
 It can be compiled using a couple commands:
-  - g++ bankersalgorithm.cpp -o bankersalgorithm
+  - g++ main.cpp -o main
   - ./bankersalgorithm
 
 ## Example 
