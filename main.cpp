@@ -53,21 +53,21 @@ int main() {
 		}
 	}
 	
-	bool finished[PROCCESS] = {false}, found = false;
+	bool finished[PROCCESS] = {false}, unsafe = false;
 	int safe[PROCCESS], index = 0;	
 
 	for (int i = 0; i < PROCCESS; ++i) {
 		for (int j = 0; j < PROCCESS; ++j) {
 			if (finished[j] == 0) {	// if process is not finished
-				found = false;	// found unsafe state = 0
+				unsafe = false;
 				for (int k = 0; k < RESOURCES; ++k) {
-					if (need[j][k] > avail[k]) {	// if need > available, unsafe
-						found = true;	// found unsafe state
+					if (need[j][k] > avail[k]) {	// if need > available = unsafe
+						unsafe = true;	// unsafe state
 						break;
 					}
 				}
 						
-				if (found == 0) {	// if no unsafe state has been found yet:
+				if (unsafe == false) {	// if no unsafe state has been found yet:
 					safe[index++] = j;	// safe order[index] = current process
 					for (int l = 0; l < RESOURCES; ++l)
 						avail[l] += alloc[j][l];	// add resource to list of available resources
@@ -80,14 +80,14 @@ int main() {
 	
 	for (int i = 0; i < PROCCESS; ++i) {
 		if (finished[i] == 0) {	// if not finished
-			found = false;	// in deadlock so its unsafe
+			unsafe = false;	// in deadlock so its unsafe
 			std::cout << "The system is not in a safe state.\n";
 			exit(1);
 			break;
 		}
 	}	
 	
-	if (found == true) {
+	if (unsafe == true) {
 		std::cout << "The system is in a safe state. The proper sequence is: ";
 		for (int i = 0; i < PROCCESS; ++i) {
 			std::cout << "P";
