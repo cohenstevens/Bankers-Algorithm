@@ -7,7 +7,7 @@
 ## Usage & Installation
 It can be compiled using a couple commands:
   - g++ main.cpp -o main
-  - ./bankersalgorithm
+  - ./main
 
 ## Example 
 ![image](https://github.com/cohenstevens/Bankers-Algorithm/assets/150870554/3cf62d5e-2994-4e7b-8d62-e72ff0e57f98)
